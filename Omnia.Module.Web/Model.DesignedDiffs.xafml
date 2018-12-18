@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="Delete" ImageName="Delete" />
+      <Action Id="RestorePassword" ImageName="Action_ResetPassword1" />
+    </Actions>
+  </ActionDesign>
+  <Options CollectionsEditMode="Edit" />
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="EmailModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="LogicModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="SchedulerAspNetModule" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemAspNetModule" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="XpandSecurityModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="XpandSecurityWebModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="XpandValidationModule" Version="17.1.5.4" IsNewNode="True" />
+  </SchemaModules>
+  <ViewItems>
+    <PropertyEditor Name="PropertyEditors">
+      <RegisteredPropertyEditor PropertyType="System.Drawing.Color" EditorType="DevExpress.ExpressApp.Web.Editors.ASPx.ASPxColorPickerPropertyEditor" />
+    </PropertyEditor>
+  </ViewItems>
+  <Views>
+    <DetailView Id="AuthenticationStandardLogonParameters_DetailView">
+      <Items>
+        <StaticImage Id="LogonImage" ImageName="Security_Image1" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

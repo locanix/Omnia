@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Omnia">
+  <ActionDesign>
+    <Actions>
+      <Action Id="DialogOK" ValidationContexts="ChangePassword" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Security.Strategy.SecuritySystemRole" Caption="Xaf Role" />
+    <Class Name="DevExpress.ExpressApp.Security.Strategy.SecuritySystemUser" Caption="Xaf User" />
+    <Class Name="DevExpress.Persistent.BaseImpl.AuditDataItemPersistent">
+      <OwnMembers>
+        <Member Name="ModifiedOn" DisplayFormat="{0:g}" EditMask="g" />
+      </OwnMembers>
+    </Class>
+    <Class Name="Xpand.ExpressApp.Security.Core.XpandUser" Caption="Xpand User" />
+  </BOModel>
+  <CreatableItems>
+    <CreatableItem ClassName="Omnia.Module.BusinessObjects.Common.Employee" IsNewNode="True" />
+    <CreatableItem ClassName="Omnia.Module.BusinessObjects.Common.WorkContact" Removed="True" />
+    <CreatableItem ClassName="Omnia.Module.BusinessObjects.Customers.CustomerContact" Removed="True" />
+    <CreatableItem ClassName="Omnia.Module.BusinessObjects.Customers.CustomerVehicle" Removed="True" />
+    <CreatableItem ClassName="Omnia.Module.BusinessObjects.Vehicles.Vehicle" Removed="True" />
+    <CreatableItem ClassName="Xpand.ExpressApp.Email.BusinessObjects.EmailTemplate" Removed="True" />
+  </CreatableItems>
+  <Email>
+    <EmailTemplateContexts>
+      <EmailTemplate Id="forgotten password" Criteria="[Name] = 'password forgotten'" IsNewNode="True" />
+      <EmailTemplate Id="new user" Criteria="[Name] = 'new user'" IsNewNode="True" />
+      <EmailTemplate Id="password changed" Criteria="[Name] = 'password changed'" IsNewNode="True" />
+      <EmailTemplate Id="temp password" Criteria="[Name] = 'temp password'" IsNewNode="True" />
+    </EmailTemplateContexts>
+    <Rules>
+      <EmailRule Id="forgotten password" SmtpClientContext="Smtp" TemplateContext="forgotten password" TypeInfo="Xpand.ExpressApp.Security.Registration.RestorePasswordParameters" CurrentObjectEmailMember="Email" NormalCriteria="" IsNewNode="True" />
+      <EmailRule Id="new user" IsNew="True" TemplateContext="new user" SmtpClientContext="Smtp" CurrentObjectEmailMember="Email" TypeInfo="Omnia.Module.BusinessObjects.Common.OmniaUser" NormalCriteria="not IsNullOrEmpty([TempPassword])" IsNewNode="True" />
+      <EmailRule Id="password changed" IsNew="False" TemplateContext="password changed" SmtpClientContext="Smtp" CurrentObjectEmailMember="Email" NormalCriteria="Not IsNullOrEmpty([TempPassword]) And [ChangePasswordOnFirstLogon] = False" TypeInfo="Omnia.Module.BusinessObjects.Common.OmniaUser" IsNewNode="True" />
+      <EmailRule Id="temp password" IsNew="False" TemplateContext="temp password" SmtpClientContext="Smtp" CurrentObjectEmailMember="Email" TypeInfo="Omnia.Module.BusinessObjects.Common.OmniaUser" NormalCriteria="Not IsNullOrEmpty([TempPassword]) And [ChangePasswordOnFirstLogon] = True" IsNewNode="True" />
+    </Rules>
+    <SmtpClientContexts>
+      <SmtpClientContext Id="Smtp" UseDefaultCredentials="False" UserName="omnia@locanix.com" Password="locanix11@789" ReplyToEmails="omnia@locanix.com" SenderEmail="omnia@locanix.com" EnableSsl="True" Host="smtp.gmail.com" Port="587" IsNewNode="True" />
+    </SmtpClientContexts>
+  </Email>
+  <NavigationItems NavigationStyle="TreeList">
+    <Items>
+      <Item Id="Customers" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Customer_ListView" ViewId="Customer_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="CustomerContact_ListView" ViewId="CustomerContact_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="CustomerVehicle_ListView" ViewId="CustomerVehicle_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="Server_ListView" ViewId="Server_ListView" ObjectKey="" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Default">
+        <Items>
+          <Item Id="AuditLogon_ListView" Removed="True" />
+          <Item Id="BillingPlan_ListView" Removed="True" />
+          <Item Id="ContactType_ListView" Removed="True" />
+          <Item Id="Customer_ListView" Removed="True" />
+          <Item Id="CustomerContact_ListView" Removed="True" />
+          <Item Id="CustomerVehicle_ListView" Removed="True" />
+          <Item Id="Department_ListView" Removed="True" />
+          <Item Id="EmailTemplate_ListView" Removed="True" />
+          <Item Id="Server_ListView" Removed="True" />
+          <Item Id="Vehicle_ListView" Removed="True" />
+          <Item Id="VehicleBodyType_ListView" Removed="True" />
+          <Item Id="VehicleBrand_ListView" Removed="True" />
+          <Item Id="VehicleModel_ListView" Removed="True" />
+          <Item Id="WorkContact_ListView" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="Reports" Removed="True" />
+      <Item Id="Settings" Caption="Settings" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Billing" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="BillingPlan_ListView" ViewId="BillingPlan_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Contacts" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="ContactType_ListView" ViewId="ContactType_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="WorkContact_ListView" ViewId="WorkContact_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="EmailTemplate_ListView" ViewId="EmailTemplate_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="Employee" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="@c6c91f6b-0b60-4f0c-9a92-1596609b5791" ViewId="Employee_ListView" IsNewNode="True" />
+              <Item Id="Department_ListView" ViewId="Department_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Reports" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="Analysis_ListView" ViewId="Analysis_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="Dashboards" ViewId="DashboardData_ListView" ObjectKey="" Caption="Dashboards" IsNewNode="True" />
+              <Item Id="ReportsV2" ViewId="ReportDataV2_ListView" ObjectKey="" Caption="Reports" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Security" Caption="Security" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="@32d7faff-d54f-4f2b-ba0d-08bc397f88a3" ViewId="XpandRole_ListView" IsNewNode="True" />
+              <Item Id="@bb83a0bb-ce6a-4241-b26b-902e88b6b39e" ViewId="OmniaUser_ListView" IsNewNode="True" />
+              <Item Id="AuditLogon_ListView" ViewId="AuditLogon_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="My Details" ObjectKey="@CurrentUserID" Caption="My Details" ImageName="BO_MyDetails" ViewId="OmniaUser_DetailView" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="State Machine" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="XpoStateMachine_ListView" ViewId="XpoStateMachine_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+          <Item Id="Vehicles" IsNewNode="True">
+            <Items IsNewNode="True">
+              <Item Id="Vehicle_ListView" ObjectKey="" ViewId="CustomerVehicle_ListView" Caption="Vehicle" IsNewNode="True" />
+              <Item Id="VehicleBodyType_ListView" ViewId="VehicleBodyType_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="VehicleBrand_ListView" ViewId="VehicleBrand_ListView" ObjectKey="" IsNewNode="True" />
+              <Item Id="VehicleModel_ListView" ViewId="VehicleModel_ListView" ObjectKey="" IsNewNode="True" />
+            </Items>
+          </Item>
+        </Items>
+      </Item>
+      <Item Id="State Machine" Removed="True" />
+    </Items>
+  </NavigationItems>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+    <Registration Enabled="True" ActivateUser="True" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="EmailModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="LogicModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="SchedulerModuleBase" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="17.1.5.0" IsNewNode="True" />
+    <SchemaModule Name="XpandAuditTrailModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="XpandSecurityModule" Version="17.1.5.4" IsNewNode="True" />
+    <SchemaModule Name="XpandValidationModule" Version="17.1.5.4" IsNewNode="True" />
+  </SchemaModules>
+  <Validation>
+    <Rules>
+      <RuleRequiredField Id="OmniaUser.Email.Required" TargetType="Omnia.Module.BusinessObjects.Common.OmniaUser" TargetPropertyName="Email" TargetContextIDs="Save" IsNewNode="True" />
+      <RuleUniqueValue Id="OmniaUser.Email.Unical" TargetType="Omnia.Module.BusinessObjects.Common.OmniaUser" TargetPropertyName="Email" TargetContextIDs="Save" IsNewNode="True" />
+    </Rules>
+  </Validation>
+  <Views>
+    <DetailView Id="AuditDataItemPersistent_DetailView" AllowDelete="False" AllowNew="False" AllowEdit="False" />
+    <ListView Id="AuditDataItemPersistent_ListView" AllowDelete="False" AllowNew="False" AllowEdit="False" DataAccessMode="Server">
+      <Columns>
+        <ColumnInfo Id="ModifiedOn" Index="0" Width="121" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="UserName" Index="1" SortIndex="-1" SortOrder="None" Width="207" />
+        <ColumnInfo Id="OperationType" Width="86" />
+      </Columns>
+    </ListView>
+    <ListView Id="AuditDataItemPersistent_LookupListView" AllowDelete="False" AllowNew="False" AllowEdit="False" DataAccessMode="Server" />
+    <ListView Id="AuditedObjectWeakReference_AuditDataItems_ListView" AllowDelete="False" AllowEdit="False" AllowNew="False" DataAccessMode="Server">
+      <Columns>
+        <ColumnInfo Id="ModifiedOn" Index="0" Width="115" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="UserName" Index="1" Width="193" SortIndex="-1" SortOrder="None" />
+      </Columns>
+    </ListView>
+    <DetailView Id="AuditedObjectWeakReference_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+    <ListView Id="AuditedObjectWeakReference_ListView" AllowDelete="False" AllowEdit="False" AllowNew="False" DataAccessMode="Server" />
+    <ListView Id="AuditedObjectWeakReference_LookupListView" AllowDelete="False" AllowEdit="False" AllowNew="False" DataAccessMode="Server" />
+    <DetailView Id="AuditLogon_DetailView" AllowDelete="False" AllowNew="False" AllowEdit="False" />
+    <ListView Id="AuditLogon_ListView" AllowDelete="False" AllowEdit="False" AllowNew="False" DataAccessMode="Server">
+      <Columns>
+        <ColumnInfo Id="EventDateTime" Index="0" SortIndex="0" SortOrder="Descending" />
+        <ColumnInfo Id="Event" Index="1" Width="103" />
+        <ColumnInfo Id="SysName" Index="2" SortIndex="-1" SortOrder="None" Width="140" />
+      </Columns>
+    </ListView>
+    <ListView Id="AuditLogon_LookupListView" AllowDelete="False" AllowEdit="False" AllowNew="False" DataAccessMode="Server" />
+    <DetailView Id="AuthenticationStandardLogonParameters_DetailView">
+      <HiddenActions>
+        <ActionLink ActionId="RegisterUser" IsNewNode="True" />
+      </HiddenActions>
+      <Items>
+        <ActionContainerViewItem Id="RestorePasswordActionItem" PaintStyle="Image" Caption="Restore Password:" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="RootGroup">
+            <LayoutGroup Id="EditorsGroup">
+              <LayoutGroup Id="Editors">
+                <LayoutGroup Id="4d5fc467-a437-4a79-b542-732e1cd37682">
+                  <LayoutGroup Id="Item3">
+                    <LayoutGroup Id="Item2">
+                      <LayoutItem Id="RestorePasswordActionItem" ShowCaption="True" ViewItem="RestorePasswordActionItem" Index="1" RelativeSize="1" IsNewNode="True" />
+                    </LayoutGroup>
+                    <LayoutGroup Id="Item1" Removed="True">
+                      <LayoutItem Id="RegisterUserActionItem" ViewItem="Empty" />
+                      <LayoutItem Id="RestorePasswordActionItem" Removed="True" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Customer_Contacts_ListView">
+      <Columns>
+        <ColumnInfo Id="Customer" Index="-1" />
+        <ColumnInfo Id="FullName" Index="-1" />
+        <ColumnInfo Id="UserName" Index="-1" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="LastName" Index="0" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="FirstName" Index="1" SortIndex="1" SortOrder="Ascending" />
+        <ColumnInfo Id="ContactType" Index="2" />
+        <ColumnInfo Id="Email" Index="3" />
+        <ColumnInfo Id="Mobile1" Index="4" />
+        <ColumnInfo Id="Mobile2" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="Customer_Vehicles_ListView" MasterDetailView="CustomerVehicle_DetailView_Customer">
+      <Columns>
+        <ColumnInfo Id="Customer" Index="-1" />
+        <ColumnInfo Id="Model" Index="0" />
+        <ColumnInfo Id="YearOfManufacture" Index="1" />
+        <ColumnInfo Id="NumberPlate2" Index="2" />
+        <ColumnInfo Id="IsBillable" Index="3" />
+      </Columns>
+    </ListView>
+    <DetailView Id="CustomerContact_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="SecuritySystemUserBase">
+              <LayoutItem Id="UserName" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="CustomerVehicle_DetailView">
+      <Items>
+        <PropertyEditor Id="Customer" PropertyName="Customer" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" IsNewNode="True" Removed="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" IsNewNode="True">
+            <LayoutItem Id="Customer" ViewItem="Customer" Index="0" IsNewNode="True" />
+            <LayoutGroup Id="Vehicle" Index="1" Direction="Horizontal" ShowCaption="True" IsNewNode="True">
+              <LayoutGroup Id="Vehicle_col1" Index="0" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="Model" ViewItem="Model" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="YearOfManufacture" ViewItem="YearOfManufacture" ShowCaption="" Index="1" IsNewNode="True" />
+                <LayoutItem Id="VIN" ViewItem="VIN" ShowCaption="" Index="2" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Vehicle_col2" Index="1" ShowCaption="False" IsNewNode="True">
+                <LayoutItem Id="NumberPlate" ViewItem="NumberPlate" ShowCaption="" Index="0" IsNewNode="True" />
+                <LayoutItem Id="Notes" ViewItem="Notes" ShowCaption="" Index="1" IsNewNode="True" />
+                <LayoutItem Id="IsBillable" ViewItem="IsBillable" ShowCaption="" Index="2" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="CustomerVehicle_DetailView_Customer" ClassName="Omnia.Module.BusinessObjects.Customers.CustomerVehicle" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="IsBillable" PropertyName="IsBillable" IsNewNode="True" />
+        <PropertyEditor Id="Model" PropertyName="Model" IsNewNode="True" />
+        <PropertyEditor Id="Notes" PropertyName="Notes" IsNewNode="True" />
+        <PropertyEditor Id="NumberPlate" PropertyName="NumberPlate" IsNewNode="True" />
+        <PropertyEditor Id="NumberPlate2" PropertyName="NumberPlate2" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="VIN" PropertyName="VIN" IsNewNode="True" />
+        <PropertyEditor Id="YearOfManufacture" PropertyName="YearOfManufacture" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" IsNewNode="True">
+          <LayoutItem Id="IsBillable" ViewItem="IsBillable" Index="0" IsNewNode="True" />
+          <LayoutItem Id="Model" ViewItem="Model" Index="1" IsNewNode="True" />
+          <LayoutItem Id="Notes" ViewItem="Notes" Index="2" IsNewNode="True" />
+          <LayoutItem Id="NumberPlate" ViewItem="NumberPlate" Index="3" IsNewNode="True" />
+          <LayoutItem Id="VIN" ViewItem="VIN" Index="4" IsNewNode="True" />
+          <LayoutItem Id="YearOfManufacture" ViewItem="YearOfManufacture" Index="5" IsNewNode="True" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="CustomerVehicle_ListView">
+      <Columns>
+        <ColumnInfo Id="Model" Index="1" />
+        <ColumnInfo Id="YearOfManufacture" Index="2" />
+        <ColumnInfo Id="VIN" Index="3" />
+        <ColumnInfo Id="NumberPlate2" Index="4" />
+        <ColumnInfo Id="IsBillable" Index="5" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Employee_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XpandUser" Index="1" />
+            <LayoutGroup Id="Employee" Index="2" />
+            <LayoutGroup Id="SecuritySystemUserBase">
+              <LayoutItem Id="UserName" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Employee_ListView">
+      <Columns>
+        <ColumnInfo Id="FullName" Index="-1" Width="244" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="HireDate" Index="-1" />
+        <ColumnInfo Id="UserName" Index="-1" Width="118" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="LastName" Index="0" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="FirstName" Index="1" SortIndex="1" SortOrder="Ascending" />
+        <ColumnInfo Id="Departmant" Index="2" />
+        <ColumnInfo Id="Designation" Index="3" />
+        <ColumnInfo Id="Email" Index="4" />
+        <ColumnInfo Id="Mobile1" Index="5" />
+        <ColumnInfo Id="Mobile2" Index="6" />
+      </Columns>
+    </ListView>
+    <DetailView Id="OmniaUser_DetailView">
+      <Items>
+        <PropertyEditor Id="UserName" AllowEdit="False" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="SecuritySystemUserBase">
+              <LayoutItem Id="UserName" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="OmniaUser_ListView">
+      <Columns>
+        <ColumnInfo Id="Language" Index="-1" />
+        <ColumnInfo Id="Notes" SortIndex="-1" SortOrder="None" Index="-1" />
+        <ColumnInfo Id="UserName" Index="-1" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="LastName" Index="0" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="FirstName" Index="1" SortIndex="1" SortOrder="Ascending" />
+        <ColumnInfo Id="Email" Index="2" />
+        <ColumnInfo Id="Mobile1" Index="3" />
+        <ColumnInfo Id="Mobile2" Index="4" />
+        <ColumnInfo Id="Activation" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="SecuritySystemUser_Roles_ListView" AllowDelete="False" AllowUnlink="True" />
+  </Views>
+</Application>

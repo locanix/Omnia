@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Security.Strategy.SecuritySystemRole" Caption="Xaf Роль" />
+  </BOModel>
+</Application>

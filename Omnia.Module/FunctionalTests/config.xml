@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Options xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TestRunTimeLimit="3" EnableUpperCase="Omnia.Web">
+  <Applications>
+    <!-- Web -->
+    <Application Name="Omnia.Web" UseIISExpress="True" Url="http://localhost:4030" PhysicalPath="[WebAppBin]" AdapterAssemblyName="[WebAdapterAssemblyName]" />
+    <!-- For IIS -->
+    <!--Application
+			Name="Omnia.Web"
+			Url="http://localhost/Omnia.Web/Default.aspx"
+			AdapterAssemblyName="[WebAdapterAssemblyName]"/-->
+    <!-- Win -->
+    <Application Name="Omnia.Win" FileName="[WinAppBin]\Omnia.Win.exe" AdapterAssemblyName="[WinAdapterAssemblyName]" CommunicationPort="4100" />
+  </Applications>
+  <TestDatabases>
+    <Database xsi:type="TestMSSQLDatabase" Server="(localdb)\mssqllocaldb" DBName="OmniaEasyTest" />
+  </TestDatabases>
+  <Aliases>
+    <Alias Name="DomainUserName" Value="%USERDOMAIN%\%USERNAME%" />
+    <Alias Name="WebAdapterAssemblyName" Value="DevExpress.ExpressApp.EasyTest.WebAdapter.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Alias Name="WebAppBin" Value="[ConfigPath]\..\..\Omnia.Web" />
+    <Alias Name="WinAdapterAssemblyName" Value="DevExpress.ExpressApp.EasyTest.WinAdapter.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Alias Name="WinAppBin" Value="[ConfigPath]\..\..\Omnia.Win\Bin\EasyTest" />
+  </Aliases>
+</Options>
